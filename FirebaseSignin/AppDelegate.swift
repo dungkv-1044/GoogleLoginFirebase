@@ -7,18 +7,70 @@
 //
 
 import UIKit
-
+import Firebase
+import GoogleSignIn
+import FirebaseDatabase
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     var window: UIWindow?
-
+    var dbRef: DatabaseReference!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        // Use Firebase library to configure APIs
+        FirebaseApp.configure()
+        
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
         return true
     }
-
+    @available(iOS 9.0, *)
+    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
+        -> Bool {
+            return GIDSignIn.sharedInstance().handle(url,
+                                                     sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
+                                                     annotation: [:])
+    }
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
+        if let error = error {
+            // ...
+            return
+        }
+        print("Login with google account")
+        guard let authentication = user.authentication else { return }
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
+                                                       accessToken: authentication.accessToken)
+        let email = user.profile.email
+        
+        Auth.auth().signIn(with: credential) { (user, error) in
+            if let error = error {
+                
+                return
+            }
+            print("Logged to Firebase")
+            self.dbRef = Database.database().reference()
+            self.dbRef.child("user_profiles").child(user!.uid).observeSingleEvent(of:.value, with: {
+                (snapshot) in
+                let snapshot = snapshot.value as? NSDictionary
+                print(snapshot)
+                if snapshot != nil {
+                    print("A")
+                    self.dbRef.child("user_profiles").child(user!.uid).child("name").setValue(user?.displayName)
+                    self.dbRef.child("user_profiles").child(user!.uid).child("email").setValue(email ?? "Null")
+                    
+                }
+//                let mainStoryboard : UIStoryboard  = UIStoryboard(name: "Main", bundle: nil)
+//                self.window?.rootViewController?.performSegue(withIdentifier: "HomeViewSegue", sender: nil)
+            })
+        }
+    
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        // Perform any operations when the user disconnects from app here.
+        // ...
+    }
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
