@@ -14,7 +14,9 @@
 		C45D0A571F4D5F9B0020F4AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C45D0A561F4D5F9B0020F4AF /* Assets.xcassets */; };
 		C45D0A5A1F4D5F9B0020F4AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C45D0A581F4D5F9B0020F4AF /* LaunchScreen.storyboard */; };
 		C45D0A621F4D5FA10020F4AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C45D0A611F4D5FA10020F4AF /* GoogleService-Info.plist */; };
-		C45D0A681F4D65FF0020F4AF /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45D0A671F4D65FF0020F4AF /* File.swift */; };
+		C494C1F11F6686B700530A76 /* ItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C494C1F01F6686B700530A76 /* ItemTableViewController.swift */; };
+		C494C1F31F6686C300530A76 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C494C1F21F6686C300530A76 /* AddItemViewController.swift */; };
+		C494C1F51F66888000530A76 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = C494C1F41F66888000530A76 /* Item.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +33,9 @@
 		C45D0A611F4D5FA10020F4AF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C45D0A631F4D604D0020F4AF /* FirebaseSignin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FirebaseSignin.entitlements; sourceTree = "<group>"; };
 		C45D0A641F4D60AF0020F4AF /* FirebaseSignin-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FirebaseSignin-Bridging-Header.h"; sourceTree = "<group>"; };
-		C45D0A671F4D65FF0020F4AF /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		C494C1F01F6686B700530A76 /* ItemTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewController.swift; sourceTree = "<group>"; };
+		C494C1F21F6686C300530A76 /* AddItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
+		C494C1F41F66888000530A76 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +97,9 @@
 				C45D0A5B1F4D5F9B0020F4AF /* Info.plist */,
 				C45D0A611F4D5FA10020F4AF /* GoogleService-Info.plist */,
 				C45D0A641F4D60AF0020F4AF /* FirebaseSignin-Bridging-Header.h */,
-				C45D0A671F4D65FF0020F4AF /* File.swift */,
+				C494C1F01F6686B700530A76 /* ItemTableViewController.swift */,
+				C494C1F21F6686C300530A76 /* AddItemViewController.swift */,
+				C494C1F41F66888000530A76 /* Item.swift */,
 			);
 			path = FirebaseSignin;
 			sourceTree = "<group>";
@@ -229,8 +235,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C494C1F51F66888000530A76 /* Item.swift in Sources */,
 				C45D0A521F4D5F9B0020F4AF /* ViewController.swift in Sources */,
-				C45D0A681F4D65FF0020F4AF /* File.swift in Sources */,
+				C494C1F31F6686C300530A76 /* AddItemViewController.swift in Sources */,
+				C494C1F11F6686B700530A76 /* ItemTableViewController.swift in Sources */,
 				C45D0A501F4D5F9B0020F4AF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
